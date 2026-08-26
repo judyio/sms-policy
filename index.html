@@ -4,16 +4,58 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SMS Program — Clinton Judy's Personal Assistant</title>
-<style>body{font-family:system-ui,sans-serif;max-width:720px;margin:3rem auto;padding:0 1.25rem;line-height:1.6;color:#222}h1{font-size:1.5rem}h2{font-size:1.15rem;margin-top:2rem}.cta{background:#f0f4ff;border:1px solid #c7d4f5;border-radius:8px;padding:1.25rem 1.5rem;margin:1.5rem 0}.cta strong{font-size:1.05rem}footer{margin-top:3rem;color:#777;font-size:.85rem}</style>
+<style>
+body{font-family:system-ui,sans-serif;max-width:720px;margin:3rem auto;padding:0 1.25rem;line-height:1.6;color:#222}
+h1{font-size:1.5rem}h2{font-size:1.15rem;margin-top:2rem}
+.cta{background:#f0f4ff;border:1px solid #c7d4f5;border-radius:8px;padding:1.25rem 1.5rem;margin:1.5rem 0}
+form{background:#fafafa;border:1px solid #ddd;border-radius:8px;padding:1.25rem 1.5rem;margin:1.5rem 0}
+label{display:block;margin-top:.75rem;font-weight:600}
+input[type=tel],input[type=text]{width:100%;max-width:320px;padding:.5rem;margin-top:.25rem;border:1px solid #bbb;border-radius:6px;font-size:1rem}
+.consent{display:flex;gap:.6rem;align-items:flex-start;margin-top:1rem;font-weight:400}
+.consent input{margin-top:.3rem}
+button{margin-top:1rem;padding:.6rem 1.4rem;border:0;border-radius:6px;background:#3556c9;color:#fff;font-size:1rem;cursor:pointer}
+.fine{font-size:.85rem;color:#666;margin-top:.75rem}
+#confirm{display:none;margin-top:1rem;color:#1a7f37;font-weight:600}
+footer{margin-top:3rem;color:#777;font-size:.85rem}
+</style>
 </head>
 <body>
 <h1>SMS Program — Personal AI Assistant</h1>
 <p>This page describes the text-messaging program for the personal AI assistant operated by Clinton Judy (sole proprietor).</p>
 
+<h2>Sign up for text messages</h2>
+<form id="optin" onsubmit="return doSubmit(event)">
+  <label for="name">Your name</label>
+  <input type="text" id="name" name="name" autocomplete="name" required>
+
+  <label for="phone">Your mobile phone number</label>
+  <input type="tel" id="phone" name="phone" placeholder="+1 (555) 555-5555" autocomplete="tel" required>
+
+  <div class="consent">
+    <input type="checkbox" id="smsconsent" name="smsconsent" required>
+    <label for="smsconsent" style="font-weight:400">
+      I agree to receive text messages from Clinton Judy's personal assistant service at the mobile number provided above. Message frequency varies. Message and data rates may apply. Reply HELP for help, STOP to cancel at any time. Consent is not a condition of any purchase. See our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms &amp; Conditions</a>.
+    </label>
+  </div>
+
+  <button type="submit">Request access</button>
+  <p class="fine">Requests are reviewed personally by the account holder; the assistant only converses with pre-authorized numbers.</p>
+  <p id="confirm">Request received — the account holder will review and authorize your number. You can also text START to +1 (708) 773-5363 once authorized.</p>
+</form>
+<script>
+function doSubmit(e){
+  e.preventDefault();
+  var n=encodeURIComponent(document.getElementById("name").value);
+  var p=encodeURIComponent(document.getElementById("phone").value);
+  document.getElementById("confirm").style.display="block";
+  window.location.href="mailto:clinton@judy.io?subject=SMS%20program%20opt-in%20request&body=Name:%20"+n+"%0APhone:%20"+p+"%0AConsent:%20agreed%20to%20receive%20SMS";
+  return false;
+}
+</script>
+
 <div class="cta">
-<strong>How to opt in:</strong>
-<p>Text <strong>START</strong> to <strong>+1 (708) 773-5363</strong> to opt in to the assistant's SMS program.</p>
-<p>By texting START to +1 (708) 773-5363, <strong>you agree to receive text messages</strong> (conversational replies, reminders, and notifications you request) from this personal assistant service. Access requires pre-authorization by the account holder — the assistant only converses with numbers he has personally approved.</p>
+<strong>Already authorized? Opt in by text:</strong>
+<p>Text <strong>START</strong> to <strong>+1 (708) 773-5363</strong>. By texting START, you agree to receive text messages (conversational replies, reminders, and notifications you request) from this personal assistant service.</p>
 <p>Message frequency varies. Message and data rates may apply. Reply <strong>HELP</strong> for help, <strong>STOP</strong> to cancel at any time.</p>
 </div>
 
